@@ -1,0 +1,82 @@
+.menu-bar{
+    -fx-background-color: rgb(65, 65, 65);
+    -fx-border-color: rgb(50, 50, 50);
+}
+
+.root {
+    -fx-background-color: rgb(65, 65, 65);
+}
+
+.menu-button:hover {
+    -fx-background-color: rgb(90, 90, 90);
+}
+
+.menu-button:showing {
+    -fx-background-color: rgb(90, 90, 90);
+}
+
+
+.menu-item:hover {
+    -fx-background-color: rgb(90, 90, 90);
+}
+
+.menu-item:focused {
+    -fx-background-color: rgb(120, 120, 120);
+}
+
+.context-menu {
+    -fx-border-color: rgb(50, 50, 50);
+    -fx-background-color: rgb(65, 65, 65);
+}
+
+.menu .label{
+    -fx-text-fill: white;
+}
+
+.tree-view {
+    -fx-background-color: rgb(65, 65, 65);
+}
+
+.tree-cell:hover.label {
+    -fx-background-color: rgb(65, 65, 65);
+}
+
+.tree-cell:hover {
+    -fx-background-color: rgb(120, 120, 120);
+}
+
+.tree-cell {
+    -fx-background-color: rgb(65, 65, 65);
+    -fx-text-fill: white;
+}
+
+.background {
+    -fx-background-color: rgb(65, 65, 65);
+}
+
+.split-pane {
+    -fx-background-color: rgb(65, 65, 65);
+    -fx-border-color: rgb(50, 50, 50);
+}
+
+.split-pane-divider {
+   -fx-background-color: rgb(50, 50, 50);
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: rgb(50, 50, 50);
+    -fx-border-color: rgb(30, 30, 30);
+}
+
+.button:hover {
+    -fx-background-color: rgb(65, 65, 65);
+}
+
+.button:pressed {
+    -fx-background-color: rgb(90, 90, 90);
+}
