@@ -62,12 +62,10 @@ public class MainWindowController {
 	private EventHandler<KeyEvent> handler = event -> {
 		switch (event.getCode()) {
 			case LEFT: {
-				System.out.println("Pressed left");
 				treeViewController.previousPressed();
 			}
 			break;
 			case RIGHT: {
-				System.out.println("Pressed right");
 				treeViewController.nextPressed();
 			}
 			break;

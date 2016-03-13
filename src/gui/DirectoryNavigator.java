@@ -34,7 +34,12 @@ public class DirectoryNavigator {
 			if (it.hasNext()) {
 				f = it.next();
 			} else {
-				return null;
+				it = this.files.listIterator();
+				if (it.hasNext()) {
+					f = it.next();
+				} else {
+					return null;
+				}
 			}
 		} while (!isImage(f.getFile()));
 		return f;
@@ -46,7 +51,12 @@ public class DirectoryNavigator {
 			if (it.hasPrevious()) {
 				f = it.previous();
 			} else {
-				return null;
+				if (!this.files.isEmpty()) {
+					it = this.files.listIterator(this.files.size());
+					f = it.previous();
+				} else {
+					return null;
+				}
 			}
 		} while (!isImage(f.getFile()));
 		return f;
@@ -64,6 +74,7 @@ public class DirectoryNavigator {
 	}
 
 	public void fileSelected(File f) {
+		setFiles(f.getParentFile().listFiles());
 		it = this.files.listIterator();
 		File curr;
 		// Get to the right position

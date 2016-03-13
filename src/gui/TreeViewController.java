@@ -23,7 +23,9 @@ public class TreeViewController implements Controller {
 
 	private DirectoryNavigator dirNav = new DirectoryNavigator();
 
+	// Initialise to my picture dir. If it doesn't exist you can select a folder from the "select root" button
 	private File rootFile = new File("E:\\MyPictures");
+
 	{
 		if (!rootFile.exists() || !rootFile.isDirectory()) {
 			rootFile = null;
