@@ -36,13 +36,14 @@ public class DirectoryNavigator {
 				f = it.next();
 			} else if (reInitialised) {
 				return null;
-			} else
+			} else {
 				it = this.files.listIterator();
 				reInitialised = true;
-			if (it.hasNext()) {
-				f = it.next();
-			} else {
-				return null;
+				if (it.hasNext()) {
+					f = it.next();
+				} else {
+					return null;
+				}
 			}
 		} while (!isImage(f.getFile()));
 		return f;
@@ -74,12 +75,6 @@ public class DirectoryNavigator {
 		return matcher.matches();
 	}
 
-	public void setFiles(List<FileWrapper> files) {
-		this.files.clear();
-		this.files.addAll(files);
-		it = this.files.listIterator();
-	}
-
 	public void fileSelected(File f) {
 		setFiles(f.getParentFile().listFiles());
 		it = this.files.listIterator();
@@ -91,6 +86,12 @@ public class DirectoryNavigator {
 				break;
 			}
 		}
+	}
+
+	public void setFiles(List<FileWrapper> files) {
+		this.files.clear();
+		this.files.addAll(files);
+		it = this.files.listIterator();
 	}
 
 	public void setFiles(FileWrapper[] files) {

@@ -134,6 +134,7 @@ public class MainWindowController {
 						imageStage.close();
 						imageStage = null;
 						setImage();
+						Platform.runLater(() -> fullScreenImageLabel.getText());
 					};
 
 					sc.addEventFilter(KeyEvent.KEY_PRESSED, handler);
