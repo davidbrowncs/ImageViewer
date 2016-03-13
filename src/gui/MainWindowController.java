@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
@@ -45,6 +46,8 @@ public class MainWindowController {
 	@FXML private Button fullScreenButton;
 	@FXML private Button nextButton;
 
+	@FXML private Label imageNameLabel;
+
 	@FXML private AnchorPane splitPaneParentLeft;
 
 	private TreeViewController treeViewController;
@@ -57,6 +60,7 @@ public class MainWindowController {
 	@FXML private Button fullScreenCloseButton;
 	@FXML private ImageView fullScreenImageView;
 	@FXML private BorderPane fullScreenImageWrapper;
+	@FXML private Label fullScreenImageLabel;
 	private Stage imageStage = null;
 
 	private EventHandler<KeyEvent> handler = event -> {
@@ -77,10 +81,15 @@ public class MainWindowController {
 			currImg = new Image(file.toURI().toString());
 			currImgPrefWidth = currImg.getWidth();
 			currImgPrefHeight = currImg.getHeight();
+			String name = file.getName().substring(0, file.getName().lastIndexOf('.'));
 			if (imageStage == null) {
 				setImage();
+				Platform.runLater(() -> imageNameLabel.setText(name));
 			} else {
-				Platform.runLater(() -> fullScreenImageView.setImage(currImg));
+				Platform.runLater(() -> {
+					fullScreenImageView.setImage(currImg);
+					fullScreenImageLabel.setText(name);
+				});
 			}
 		});
 	}

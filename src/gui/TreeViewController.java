@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -22,6 +24,17 @@ public class TreeViewController implements Controller {
 	private MainWindowController mainWindowController;
 
 	private DirectoryNavigator dirNav = new DirectoryNavigator();
+
+	private static final Image ICON = new Image("res/imageIcon.png");
+	private static final ImageView ICON_VIEW = new ImageView();
+
+	private void initView(ImageView view) {
+		view.setImage(ICON);
+		view.setSmooth(true);
+		view.setPreserveRatio(true);
+		view.setFitHeight(15);
+		view.setFitWidth(15);
+	}
 
 	// Initialise to my picture dir. If it doesn't exist you can select a folder from the "select root" button
 	private File rootFile = new File("E:\\MyPictures");
@@ -50,7 +63,11 @@ public class TreeViewController implements Controller {
 			if (f.isDirectory()) {
 				root.getChildren().add(getNodes(f, root));
 			} else if (dirNav.isImage(f)) {
-				root.getChildren().add(new TreeItem<>(new FileWrapper(f)));
+				TreeItem<FileWrapper> ti = new TreeItem<>(new FileWrapper(f));
+				ImageView view = new ImageView();
+				initView(view);
+				ti.setGraphic(view);
+				root.getChildren().add(ti);
 			}
 		}
 		return root;

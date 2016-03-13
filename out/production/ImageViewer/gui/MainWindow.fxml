@@ -80,44 +80,52 @@
                         </BorderPane>
                      </children>
                   </AnchorPane>
-                <AnchorPane fx:id="imageViewBackgroundPane" minHeight="0.0" minWidth="0.0">
-                     <children>
-                        <BorderPane layoutX="287.0" layoutY="65.0" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <center>
-                              <BorderPane fx:id="imagePane" minHeight="0.0" minWidth="0.0" BorderPane.alignment="CENTER">
+                  <BorderPane>
+                     <center>
+                      <AnchorPane fx:id="imageViewBackgroundPane" minHeight="0.0" minWidth="0.0">
+                           <children>
+                              <BorderPane layoutX="287.0" layoutY="65.0" minHeight="0.0" minWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <center>
-                                    <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                    <BorderPane fx:id="imagePane" minHeight="0.0" minWidth="0.0" BorderPane.alignment="CENTER">
+                                       <center>
+                                          <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                                       </center>
+                                       <top>
+                                          <Label fx:id="imageNameLabel" text="No Image" BorderPane.alignment="CENTER" />
+                                       </top>
+                                    </BorderPane>
                                  </center>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <bottom>
+                                    <GridPane alignment="CENTER" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button fx:id="previousButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Previous Image" />
+                                          <Button fx:id="fullScreenButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Full Screen" GridPane.columnIndex="1" />
+                                          <Button fx:id="nextButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Next Image" GridPane.columnIndex="2" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </bottom>
                               </BorderPane>
-                           </center>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <bottom>
-                              <GridPane alignment="CENTER" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Button fx:id="previousButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Previous Image" />
-                                    <Button fx:id="fullScreenButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Full Screen" GridPane.columnIndex="1" />
-                                    <Button fx:id="nextButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Next Image" GridPane.columnIndex="2" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </GridPane>
-                           </bottom>
-                        </BorderPane>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding></AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
               </items>
             </SplitPane>
          </center>

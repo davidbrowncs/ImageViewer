@@ -30,16 +30,19 @@ public class DirectoryNavigator {
 
 	public FileWrapper next() {
 		FileWrapper f;
+		boolean reInitialised = false;
 		do {
 			if (it.hasNext()) {
 				f = it.next();
-			} else {
+			} else if (reInitialised) {
+				return null;
+			} else
 				it = this.files.listIterator();
-				if (it.hasNext()) {
-					f = it.next();
-				} else {
-					return null;
-				}
+				reInitialised = true;
+			if (it.hasNext()) {
+				f = it.next();
+			} else {
+				return null;
 			}
 		} while (!isImage(f.getFile()));
 		return f;
@@ -47,12 +50,16 @@ public class DirectoryNavigator {
 
 	public FileWrapper previous() {
 		FileWrapper f;
+		boolean reInitialised = false;
 		do {
 			if (it.hasPrevious()) {
 				f = it.previous();
+			} else if (reInitialised) {
+				return null;
 			} else {
 				if (!this.files.isEmpty()) {
 					it = this.files.listIterator(this.files.size());
+					reInitialised = true;
 					f = it.previous();
 				} else {
 					return null;
