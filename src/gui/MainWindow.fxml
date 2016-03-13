@@ -90,9 +90,6 @@
                                        <center>
                                           <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                                        </center>
-                                       <top>
-                                          <Label fx:id="imageNameLabel" text="No Image" BorderPane.alignment="CENTER" />
-                                       </top>
                                     </BorderPane>
                                  </center>
                                  <opaqueInsets>
@@ -118,6 +115,16 @@
                                        </padding>
                                     </GridPane>
                                  </bottom>
+                                 <top>
+                                    <Label fx:id="imageNameLabel" text="No Image" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </top>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
                               </BorderPane>
                            </children>
                            <padding>

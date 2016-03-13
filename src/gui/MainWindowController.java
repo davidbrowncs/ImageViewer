@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -48,7 +47,7 @@ public class MainWindowController {
 
 	@FXML private Label imageNameLabel;
 
-	@FXML private AnchorPane splitPaneParentLeft;
+	@FXML private Pane splitPaneParentLeft;
 
 	private TreeViewController treeViewController;
 	private Parent parent;
@@ -57,10 +56,8 @@ public class MainWindowController {
 	private double currImgPrefWidth;
 	private double currImgPrefHeight;
 
-	@FXML private Button fullScreenCloseButton;
 	@FXML private ImageView fullScreenImageView;
 	@FXML private BorderPane fullScreenImageWrapper;
-	@FXML private Label fullScreenImageLabel;
 	private Stage imageStage = null;
 
 	private EventHandler<KeyEvent> handler = event -> {
@@ -88,7 +85,6 @@ public class MainWindowController {
 			} else {
 				Platform.runLater(() -> {
 					fullScreenImageView.setImage(currImg);
-					fullScreenImageLabel.setText(name);
 				});
 			}
 		});
@@ -98,8 +94,8 @@ public class MainWindowController {
 		Platform.runLater(() -> {
 			double width = imagePane.getWidth();
 			double height = imagePane.getHeight();
-			double w = Math.min(width, currImgPrefWidth);
 			double h = Math.min(height, currImgPrefHeight);
+			double w = h == height ? width : currImgPrefWidth;
 			imageView.setFitWidth(w);
 			imageView.setFitHeight(h);
 			imageView.setImage(currImg);
@@ -109,8 +105,10 @@ public class MainWindowController {
 	private void initValues() {
 		imageView.setFitWidth(imagePane.getWidth());
 		imageView.setFitHeight(imagePane.getHeight());
-		imagePane.widthProperty().addListener(e -> imageView.setFitWidth(Math.min(imagePane.getWidth(), currImgPrefWidth)));
-		imagePane.heightProperty().addListener(e -> imageView.setFitHeight(Math.min(imagePane.getHeight(), currImgPrefHeight)));
+		imagePane.widthProperty().addListener(e -> imageView.setFitWidth(Math.min(imagePane.getWidth(),
+				currImgPrefWidth)));
+		imagePane.heightProperty().addListener(e -> imageView.setFitHeight(Math.min(imagePane.getHeight(),
+				currImgPrefHeight)));
 		imageView.setPreserveRatio(true);
 		imageView.setCache(true);
 	}
@@ -134,7 +132,6 @@ public class MainWindowController {
 						imageStage.close();
 						imageStage = null;
 						setImage();
-						Platform.runLater(() -> fullScreenImageLabel.getText());
 					};
 
 					sc.addEventFilter(KeyEvent.KEY_PRESSED, handler);
@@ -142,10 +139,6 @@ public class MainWindowController {
 						if (e1.getCode() == KeyCode.ESCAPE) {
 							close.run();
 						}
-					});
-
-					fullScreenCloseButton.setOnAction(e1 -> {
-						close.run();
 					});
 
 					fullScreenImageView.setImage(currImg);
@@ -157,8 +150,7 @@ public class MainWindowController {
 					imageStage = new Stage(StageStyle.UNDECORATED);
 					imageStage.setOnCloseRequest(e1 -> imageStage = null);
 					imageStage.setScene(sc);
-					imageStage.setMaximized(true);
-
+					imageStage.setFullScreen(true);
 					imageStage.show();
 				} catch (IOException e1) {
 					e1.printStackTrace();
